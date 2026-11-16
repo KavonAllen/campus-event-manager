@@ -1,5 +1,5 @@
 # Campus Event Manager API and Admin Interface – Project Proposal
-
+# GitHub Repository Link - https://github.com/KavonAllen/campus-event-manager.git 
 The purpose of the Campus Event Manager application is to provide a centralized system for managing campus events. Colleges and universities regularly organize activities such as student orientations, club meetings, workshops, and other campus gatherings. Keeping track of these events can become difficult when information is spread across different platforms. This application will help simplify that process by providing a backend system that stores event information and allows authorized users to manage it through an administrative interface.
 
 The primary users of the system will be college administrators, faculty members, and other staff responsible for organizing campus events. Students may also benefit from the application by having access to accurate and updated event information. Administrators will be responsible for creating events, updating existing information, viewing scheduled events, and removing events that are no longer needed.
