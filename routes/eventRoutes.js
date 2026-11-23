@@ -4,10 +4,11 @@ const mongoose = require('mongoose');
 
 const Event = require('../models/Event');
 const validateEvent = require('../middleware/validateEvent');
+const authenticateToken = require('../middleware/authenticateToken');
 
 const router = express.Router();
 
-// GET: Retrieve all events
+// GET: Retrieve all events (Public)
 router.get('/', async (req, res, next) => {
     try {
         const events = await Event.find();
@@ -22,7 +23,7 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-// GET: Retrieve one event
+// GET: Retrieve one event (Public)
 router.get('/:id', async (req, res, next) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -50,8 +51,8 @@ router.get('/:id', async (req, res, next) => {
     }
 });
 
-// POST: Create an event
-router.post('/', validateEvent, async (req, res, next) => {
+// POST: Create an event (Authenticated users only)
+router.post('/', authenticateToken, validateEvent, async (req, res, next) => {
     try {
         const event = await Event.create(req.body);
 
@@ -65,8 +66,8 @@ router.post('/', validateEvent, async (req, res, next) => {
     }
 });
 
-// PUT: Update an event
-router.put('/:id', validateEvent, async (req, res, next) => {
+// PUT: Update an event (Authenticated users only)
+router.put('/:id', authenticateToken, validateEvent, async (req, res, next) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
             return res.status(400).json({
@@ -98,8 +99,8 @@ router.put('/:id', validateEvent, async (req, res, next) => {
     }
 });
 
-// DELETE: Delete an event
-router.delete('/:id', async (req, res, next) => {
+// DELETE: Delete an event (Authenticated users only)
+router.delete('/:id', authenticateToken, async (req, res, next) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
             return res.status(400).json({

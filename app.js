@@ -6,6 +6,7 @@ require('dotenv').config();
 const requestLogger = require('./middleware/requestLogger');
 const errorHandler = require('./middleware/errorHandler');
 const eventRoutes = require('./routes/eventRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,6 +25,9 @@ app.get('/', (req, res) => {
 
 // Event routes
 app.use('/api/events', eventRoutes);
+
+// Authentication routes
+app.use('/api/auth', authRoutes);
 
 // Handle unknown routes
 app.use((req, res) => {
